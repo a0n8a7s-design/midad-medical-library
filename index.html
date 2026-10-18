@@ -719,6 +719,143 @@ medicalSearch.addEventListener("input", event => {
 
 renderMedicalLibrary();
 </script>
+
+<section class="section container" id="medical-glossary">
+  <div class="section-heading">
+    <h2>موسوعة المصطلحات الطبية</h2>
+    <span class="muted">عربي · English</span>
+  </div>
+
+  <input
+    id="glossarySearch"
+    type="search"
+    placeholder="ابحث عن مصطلح بالعربية أو الإنجليزية..."
+    aria-label="البحث في المصطلحات الطبية"
+    style="width:100%;padding:14px;border:1px solid #e2e5df;border-radius:10px;margin-bottom:18px"
+  >
+
+  <div class="grid" id="glossaryResults"></div>
+
+  <p id="glossaryEmpty" class="muted" hidden>
+    لم نجد مصطلحًا مطابقًا.
+  </p>
+</section>
+
+<script>
+const midadGlossary = [
+  {
+    ar: "خلية",
+    en: "Cell",
+    category: "علم الأحياء",
+    definition: "الوحدة الأساسية في بناء الكائنات الحية وأداء وظائفها."
+  },
+  {
+    ar: "نسيج",
+    en: "Tissue",
+    category: "علم التشريح",
+    definition: "مجموعة منظمة من الخلايا ومكوناتها تؤدي وظيفة أو وظائف معينة."
+  },
+  {
+    ar: "عضو",
+    en: "Organ",
+    category: "علم التشريح",
+    definition: "بنية تتكون من نوعين أو أكثر من الأنسجة تعمل معًا لأداء وظائف محددة."
+  },
+  {
+    ar: "علم التشريح",
+    en: "Anatomy",
+    category: "علوم أساسية",
+    definition: "دراسة بنية الجسم وأجزائه والعلاقات المكانية بينها."
+  },
+  {
+    ar: "علم وظائف الأعضاء",
+    en: "Physiology",
+    category: "علوم أساسية",
+    definition: "دراسة كيفية عمل الكائنات الحية وخلاياها وأنسجتها وأجهزتها."
+  },
+  {
+    ar: "النسيج العصبي",
+    en: "Nervous Tissue",
+    category: "علم الأنسجة",
+    definition: "نسيج متخصص في استقبال المعلومات ومعالجتها ونقل الإشارات."
+  },
+  {
+    ar: "الشريان",
+    en: "Artery",
+    category: "الجهاز الدوري",
+    definition: "وعاء دموي ينقل الدم بعيدًا عن القلب، سواء كان الدم غنيًا بالأكسجين أم لا."
+  },
+  {
+    ar: "الوريد",
+    en: "Vein",
+    category: "الجهاز الدوري",
+    definition: "وعاء دموي يعيد الدم باتجاه القلب."
+  },
+  {
+    ar: "التوازن الداخلي",
+    en: "Homeostasis",
+    category: "علم وظائف الأعضاء",
+    definition: "تنظيم العمليات الداخلية للمحافظة على ظروف مناسبة لعمل الجسم رغم تغير البيئة."
+  },
+  {
+    ar: "التمثيل الغذائي",
+    en: "Metabolism",
+    category: "الكيمياء الحيوية",
+    definition: "مجمل التفاعلات الكيميائية التي تحدث داخل الخلايا والكائن الحي."
+  },
+  {
+    ar: "الإنزيم",
+    en: "Enzyme",
+    category: "الكيمياء الحيوية",
+    definition: "عامل حفاز حيوي يسرّع تفاعلًا كيميائيًا محددًا دون أن يُستهلك خلال التفاعل."
+  },
+  {
+    ar: "الهرمون",
+    en: "Hormone",
+    category: "علم الغدد الصماء",
+    definition: "رسول كيميائي تنتجه خلايا أو غدد وينظم وظائف في خلايا مستهدفة."
+  }
+];
+
+const glossarySearch = document.getElementById("glossarySearch");
+const glossaryResults = document.getElementById("glossaryResults");
+const glossaryEmpty = document.getElementById("glossaryEmpty");
+
+function renderGlossary(query = "") {
+  const normalized = query.trim().toLocaleLowerCase();
+
+  const results = midadGlossary.filter(item => {
+    const content = [
+      item.ar,
+      item.en,
+      item.category,
+      item.definition
+    ].join(" ").toLocaleLowerCase();
+
+    return content.includes(normalized);
+  });
+
+  glossaryResults.innerHTML = results.map(item => `
+    <article class="card">
+      <span class="tag">${item.category}</span>
+      <h3>${item.ar}</h3>
+      <p><strong>${item.en}</strong></p>
+      <p>${item.definition}</p>
+    </article>
+  `).join("");
+
+  glossaryEmpty.hidden = results.length > 0;
+}
+
+glossarySearch.addEventListener("input", event => {
+  renderGlossary(event.target.value);
+});
+
+renderGlossary();
+</script>
+</body>
+</html>
+
 </body>
 </html>
   
