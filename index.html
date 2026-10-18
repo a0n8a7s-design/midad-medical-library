@@ -853,6 +853,133 @@ glossarySearch.addEventListener("input", event => {
 
 renderGlossary();
 </script>
+
+<section class="section container" id="interactive-atlas">
+  <div class="section-heading">
+    <h2>الأطلس التشريحي التفاعلي</h2>
+    <span class="muted">استكشف أجهزة الجسم</span>
+  </div>
+
+  <p class="muted">
+    اختر أحد الأنظمة لقراءة مقدمة تعليمية عن بنيته ووظيفته.
+  </p>
+
+  <div class="grid" id="atlasSystems">
+    <button class="card" type="button"
+      onclick="selectAtlasSystem('circulatory')">
+      <div class="symbol">❤️</div>
+      <h3>الجهاز الدوري</h3>
+      <p>Circulatory System</p>
+    </button>
+
+    <button class="card" type="button"
+      onclick="selectAtlasSystem('nervous')">
+      <div class="symbol">🧠</div>
+      <h3>الجهاز العصبي</h3>
+      <p>Nervous System</p>
+    </button>
+
+    <button class="card" type="button"
+      onclick="selectAtlasSystem('respiratory')">
+      <div class="symbol">🫁</div>
+      <h3>الجهاز التنفسي</h3>
+      <p>Respiratory System</p>
+    </button>
+
+    <button class="card" type="button"
+      onclick="selectAtlasSystem('skeletal')">
+      <div class="symbol">🦴</div>
+      <h3>الجهاز الهيكلي</h3>
+      <p>Skeletal System</p>
+    </button>
+  </div>
+
+  <article class="card" id="atlasDetails" hidden
+    style="margin-top:22px">
+    <span class="tag" id="atlasTag"></span>
+    <h3 id="atlasTitle"></h3>
+    <p id="atlasEnglish" class="muted"></p>
+
+    <h3>البنية الأساسية</h3>
+    <p id="atlasStructure"></p>
+
+    <h3>الوظيفة الرئيسية</h3>
+    <p id="atlasFunction"></p>
+
+    <h3>معلومة تعليمية</h3>
+    <p id="atlasFact"></p>
+
+    <button class="btn" type="button"
+      onclick="closeAtlasDetails()">العودة إلى الأجهزة</button>
+  </article>
+
+  <p class="notice" style="margin-top:18px">
+    هذا القسم يقدم معلومات تشريحية تمهيدية. الرسومات التشريحية
+    الدقيقة والطبقات التفاعلية والنماذج ثلاثية الأبعاد ستضاف
+    في مراحل لاحقة مع توثيق مصادرها وتراخيصها.
+  </p>
+</section>
+
+<script>
+const atlasData = {
+  circulatory: {
+    title: "الجهاز الدوري",
+    english: "Circulatory System",
+    structure: "يتضمن القلب والدم والأوعية الدموية، ومنها الشرايين والأوردة والشعيرات الدموية.",
+    function: "نقل الأكسجين والمواد الغذائية والهرمونات، والمساهمة في نقل الفضلات وتنظيم حرارة الجسم.",
+    fact: "تتضمن الدورة الدموية البشرية دورة رئوية لتبادل الغازات ودورة جهازية لنقل الدم بين القلب وبقية الجسم."
+  },
+  nervous: {
+    title: "الجهاز العصبي",
+    english: "Nervous System",
+    structure: "يتكون من الجهاز العصبي المركزي، الذي يشمل الدماغ والحبل الشوكي، والجهاز العصبي المحيطي.",
+    function: "استقبال المعلومات الحسية ومعالجتها وتنسيق الاستجابات والتحكم في العديد من وظائف الجسم.",
+    fact: "تنتقل المعلومات العصبية عبر إشارات كهربائية وكيميائية، بحسب نوع الخلية والاتصال العصبي."
+  },
+  respiratory: {
+    title: "الجهاز التنفسي",
+    english: "Respiratory System",
+    structure: "يشمل الممرات الهوائية والرئتين والحويصلات الهوائية، إضافة إلى عضلات تساعد في التنفس.",
+    function: "إدخال الأكسجين إلى الجسم والتخلص من ثاني أكسيد الكربون عبر تبادل الغازات.",
+    fact: "تحدث معظم عملية تبادل الغازات في الحويصلات الهوائية المحاطة بشبكة من الشعيرات الدموية."
+  },
+  skeletal: {
+    title: "الجهاز الهيكلي",
+    english: "Skeletal System",
+    structure: "يتكون من العظام والغضاريف والمفاصل وبنى داعمة أخرى.",
+    function: "دعم الجسم وحماية بعض الأعضاء والمساهمة في الحركة وتخزين المعادن وتكوين خلايا الدم في نقي العظم.",
+    fact: "تعمل العظام مع العضلات والمفاصل لتوفير الحركة والثبات."
+  }
+};
+
+function selectAtlasSystem(id) {
+  const item = atlasData[id];
+  if (!item) return;
+
+  document.getElementById("atlasTag").textContent = "علم التشريح";
+  document.getElementById("atlasTitle").textContent = item.title;
+  document.getElementById("atlasEnglish").textContent = item.english;
+  document.getElementById("atlasStructure").textContent = item.structure;
+  document.getElementById("atlasFunction").textContent = item.function;
+  document.getElementById("atlasFact").textContent = item.fact;
+
+  document.getElementById("atlasSystems").hidden = true;
+  document.getElementById("atlasDetails").hidden = false;
+  document.getElementById("atlasDetails").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function closeAtlasDetails() {
+  document.getElementById("atlasDetails").hidden = true;
+  document.getElementById("atlasSystems").hidden = false;
+  document.getElementById("atlasSystems").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+</script>
 </body>
 </html>
   
