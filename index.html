@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102f3a">
+  <meta name="description" content="مِداد الطبي: مكتبة عربية للتعلم والقراءة الطبية.">
+  <title>مِداد الطبي | المكتبة الطبية</title>
+  <style>
+    :root {
+      --navy: #102f3a;
+      --gold: #d9bd82;
+      --paper: #f5f3ed;
+      --white: #ffffff;
+      --green: #477b69;
+      --text: #26363d;
+      --muted: #68777b;
+      --border: #e2e5df;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input { font: inherit; }
+
+    .container {
+      width: min(1100px, 92%);
+      margin-inline: auto;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-block: 12px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .brand small {
+      display: block;
+      color: #e9eeeb;
+      font-size: 11px;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      background: var(--navy);
+      color: white;
+      padding: 60px 0 72px;
+    }
+
+    .hero-content { max-width: 720px; }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 49px);
+      line-height: 1.45;
+      margin: 12px 0;
+    }
+
+    .hero p {
+      color: #e1e8e7;
+      max-width: 620px;
+    }
+
+    .search {
+      display: flex;
+      gap: 8px;
+      max-width: 600px;
+      margin-top: 24px;
+    }
+
+    .search input {
+      min-width: 0;
+      flex: 1;
+      border: 1px solid #d7dfdc;
+      border-radius: 10px;
+      padding: 13px;
+      background: white;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 17px;
+      min-height: 44px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .section { padding: 38px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    h2 { margin: 0; color: var(--navy); font-size: 25px; }
+
+    .muted { color: var(--muted); font-size: 14px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 21px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px #102f3a10;
+    }
+
+    .symbol {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: #eaf0eb;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 { color: var(--navy); margin: 5px 0; }
+
+    .card p { color: var(--muted); font-size: 14px; }
+
+    .tag {
+      display: inline-block;
+      color: var(--green);
+      background: #eaf2ed;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .notice {
+      background: #fff9eb;
+      border-right: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 15px 18px;
+      font-size: 13px;
+    }
+
+    .empty {
+      display: none;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 24px;
+      background: var(--navy);
+      color: #e1e8e7;
+      padding: 25px 0;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 480px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 10px 14px; }
+      .hero { padding: 42px 0 48px; }
+      .search { flex-direction: column; }
+      .search .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#" aria-label="مِداد الطبي">
+      مِداد الطبي
+      <small>MIDAD MEDICAL LIBRARY</small>
+    </a>
+    <nav class="nav-links" aria-label="التنقل الرئيسي">
+      <a href="#specialties">التخصصات</a>
+      <a href="#library">المكتبة</a>
+      <a href="#atlas">الأطلس التشريحي</a>
+      <a href="#about">عن المشروع</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="eyebrow">المعرفة الطبية تبدأ من هنا</span>
+      <h1>بوابتك العربية إلى<br>عالم العلوم الطبية</h1>
+      <p>
+        مساحة تعليمية منظمة لاستكشاف العلوم الطبية،
+        وقراءة الملخصات، وفهم المصطلحات، والتعرف
+        على أجهزة جسم الإنسان.
+      </p>
+      <form class="search" id="searchForm">
+        <input id="searchInput" type="search"
+          placeholder="ابحث عن تخصص أو موضوع طبي..."
+          aria-label="البحث في المكتبة">
+        <button class="btn" type="submit">ابحث الآن</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section container" id="specialties">
+    <div class="section-heading">
+      <h2>التخصصات الطبية</h2>
+      <span class="muted">اكتشف مجالات المعرفة الطبية</span>
+    </div>
+
+    <div class="grid searchable">
+      <article class="card" data-search="التشريح anatomy جسم الإنسان أعضاء">
+        <div class="symbol">🫀</div>
+        <span class="tag">علوم أساسية</span>
+        <h3>علم التشريح</h3>
+        <p>التعرف على أعضاء الجسم وأجهزته والعلاقات بينها.</p>
+      </article>
+
+      <article class="card" data-search="علم وظائف الأعضاء physiology وظائف الجسم">
+        <div class="symbol">🩺</div>
+        <span class="tag">علوم أساسية</span>
+        <h3>علم وظائف الأعضاء</h3>
+        <p>فهم كيفية عمل أجهزة الجسم وتنظيم وظائفها.</p>
+      </article>
+
+      <article class="card" data-search="الكيمياء الحيوية biochemistry الخلايا الجزيئات">
+        <div class="symbol">🧪</div>
+        <span class="tag">علوم أساسية</span>
+        <h3>الكيمياء الحيوية</h3>
+        <p>دراسة التفاعلات الكيميائية والجزيئات داخل الكائن الحي.</p>
+      </article>
+
+      <article class="card" data-search="علم الأدوية pharmacology الأدوية">
+        <div class="symbol">💊</div>
+        <span class="tag">علوم طبية</span>
+        <h3>علم الأدوية</h3>
+        <p>مبادئ عمل الأدوية واستخداماتها ومخاطرها.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container" id="library">
+    <div class="section-heading">
+      <h2>المكتبة التعليمية</h2>
+      <span class="muted">مساحة مخصصة للتعلم المنظم</span>
+    </div>
+
+    <div class="grid searchable">
+      <article class="card" data-search="ملخصات طبية كتب مراجع مراجعة">
+        <div class="symbol">📚</div>
+        <h3>الملخصات الطبية</h3>
+        <p>سيضم هذا القسم ملخصات تعليمية منظمة مع مصادرها ومراجعها.</p>
+        <span class="tag">قيد البناء</span>
+      </article>
+
+      <article class="card" data-search="مصطلحات طبية قاموس عربي إنجليزي لاتيني">
+        <div class="symbol">🔤</div>
+        <h3>المصطلحات الطبية</h3>
+        <p>قاموس مخطط للمصطلحات الطبية بالعربية والإنجليزية واللاتينية.</p>
+        <span class="tag">قيد البناء</span>
+      </article>
+
+      <article class="card" id="atlas"
+        data-search="الأطلس التشريحي anatomy atlas رسومات تفاعلية">
+        <div class="symbol">🧠</div>
+        <h3>الأطلس التشريحي</h3>
+        <p>قسم مخصص للرسومات التشريحية والتسميات والطبقات التفاعلية.</p>
+        <span class="tag">قيد البناء</span>
+      </article>
+
+      <article class="card" data-search="مسارات التعلم دروس اختبارات تعليم">
+        <div class="symbol">🎓</div>
+        <h3>مسارات التعلم</h3>
+        <p>مسارات مرتبة من المفاهيم الأساسية إلى الموضوعات المتقدمة.</p>
+        <span class="tag">قيد البناء</span>
+      </article>
+    </div>
+    <p class="empty" id="emptyMessage">لا توجد نتائج مطابقة لبحثك.</p>
+  </section>
+
+  <section class="section container" id="about">
+    <div class="notice">
+      <strong>تنبيه علمي:</strong>
+      هذا المشروع مخصص للتعلم والتثقيف الطبي، ولا يُغني
+      عن استشارة المختصين أو المراجع الطبية المعتمدة.
+      ستُوثق المصادر عند إضافة المحتوى العلمي.
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>مِداد الطبي</strong>
+    <p>المعرفة مسؤولية، والتعلم رحلة مستمرة.</p>
+    <span>© <span id="year"></span> مِداد الطبي</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  const form = document.getElementById("searchForm");
+  const input = document.getElementById("searchInput");
+  const cards = [...document.querySelectorAll(".searchable .card")];
+  const emptyMessage = document.getElementById("emptyMessage");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const query = input.value.trim().toLocaleLowerCase("ar");
+    let visibleCount = 0;
+
+    cards.forEach(function (card) {
+      const content = (
+        card.innerText + " " + (card.dataset.search || "")
+      ).toLocaleLowerCase("ar");
+
+      const matches = !query || content.includes(query);
+      card.style.display = matches ? "" : "none";
+      if (matches) visibleCount++;
+    });
+
+    emptyMessage.style.display =
+      visibleCount === 0 ? "block" : "none";
+
+    document.getElementById("library").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+
+  input.addEventListener("input", function () {
+    if (!input.value.trim()) {
+      cards.forEach(function (card) {
+        card.style.display = "";
+      });
+      emptyMessage.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+  </html>
+  
