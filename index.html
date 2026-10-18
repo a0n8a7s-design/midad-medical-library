@@ -401,5 +401,117 @@
 </script>
 
 </body>
-  </html>
+ 
+<section class="section container" id="learn">
+  <div class="section-heading">
+    <h2>اقرأ وتعلّم</h2>
+    <span class="muted">محتوى تعليمي أولي</span>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <span class="tag">علم التشريح</span>
+      <h3>مقدمة في جسم الإنسان</h3>
+      <p>
+        يتكون جسم الإنسان من خلايا تنتظم في أنسجة،
+        ثم أعضاء، ثم أجهزة تعمل بصورة متكاملة.
+        يساعد فهم هذا التنظيم على دراسة العلوم الطبية.
+      </p>
+      <button class="btn" type="button"
+        onclick="showLesson('lesson-body')">
+        اقرأ الملخص
+      </button>
+    </article>
+
+    <article class="card">
+      <span class="tag">علم وظائف الأعضاء</span>
+      <h3>كيف يعمل القلب؟</h3>
+      <p>
+        القلب عضو عضلي يضخ الدم عبر الدورة الدموية.
+        ويساعد هذا الضخ على إيصال الأكسجين والمواد
+        الغذائية إلى أنسجة الجسم.
+      </p>
+      <button class="btn" type="button"
+        onclick="showLesson('lesson-heart')">
+        اقرأ الملخص
+      </button>
+    </article>
+
+    <article class="card">
+      <span class="tag">مصطلحات طبية</span>
+      <h3>مصطلحات أساسية</h3>
+      <p>
+        Anatomy تعني علم التشريح،
+        وPhysiology تعني علم وظائف الأعضاء،
+        وCell تعني خلية.
+      </p>
+      <button class="btn" type="button"
+        onclick="showLesson('lesson-terms')">
+        اقرأ المصطلحات
+      </button>
+    </article>
+  </div>
+
+  <div id="lesson-body" class="card lesson" hidden>
+    <h3>مقدمة في جسم الإنسان</h3>
+    <p><strong>الخلية:</strong> الوحدة الأساسية للحياة.</p>
+    <p><strong>النسيج:</strong> مجموعة خلايا متشابهة تؤدي وظيفة محددة.</p>
+    <p><strong>العضو:</strong> بنية تتكون من عدة أنسجة تعمل معًا.</p>
+    <p><strong>الجهاز:</strong> مجموعة أعضاء تتعاون لأداء وظائف الجسم.</p>
+    <p><strong>للمراجعة:</strong> خلية ← نسيج ← عضو ← جهاز.</p>
+    <button class="btn" type="button" onclick="hideLessons()">إغلاق</button>
+  </div>
+
+  <div id="lesson-heart" class="card lesson" hidden>
+    <h3>كيف يعمل القلب؟</h3>
+    <p>
+      يتكون القلب من أربع حجرات: أذينين وبطينين.
+      يستقبل الجانب الأيمن الدم العائد من الجسم ويوجهه
+      نحو الرئتين، بينما يضخ الجانب الأيسر الدم المؤكسج
+      إلى أنحاء الجسم.
+    </p>
+    <p>
+      تساعد صمامات القلب على توجيه جريان الدم في الاتجاه
+      الصحيح. وتُنظّم الإشارات الكهربائية تسلسل انقباض القلب.
+    </p>
+    <button class="btn" type="button" onclick="hideLessons()">إغلاق</button>
+  </div>
+
+  <div id="lesson-terms" class="card lesson" hidden>
+    <h3>مصطلحات طبية أساسية</h3>
+    <p><strong>Anatomy:</strong> علم التشريح.</p>
+    <p><strong>Physiology:</strong> علم وظائف الأعضاء.</p>
+    <p><strong>Cell:</strong> خلية.</p>
+    <p><strong>Tissue:</strong> نسيج.</p>
+    <p><strong>Organ:</strong> عضو.</p>
+    <p><strong>System:</strong> جهاز.</p>
+    <button class="btn" type="button" onclick="hideLessons()">إغلاق</button>
+  </div>
+
+  <p class="muted">
+    هذه ملخصات تعليمية تمهيدية وليست بديلًا عن الكتب الطبية
+    المعتمدة أو التقييم الطبي المتخصص.
+  </p>
+</section>
+
+<script>
+  function showLesson(id) {
+    hideLessons();
+    const lesson = document.getElementById(id);
+    if (lesson) {
+      lesson.hidden = false;
+      lesson.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function hideLessons() {
+    document.querySelectorAll(".lesson").forEach(function (lesson) {
+      lesson.hidden = true;
+    });
+  }
+</script>
+</body>
+</html>
+
+</html>
   
