@@ -511,5 +511,214 @@
   }
 </script>
 </body>
+
+<section class="section container" id="medical-library">
+  <div class="section-heading">
+    <h2>مكتبة مِداد الطبية</h2>
+    <span class="muted">تعلّم وابحث واقرأ</span>
+  </div>
+
+  <input
+    id="medicalSearch"
+    type="search"
+    placeholder="ابحث بالعربية أو الإنجليزية..."
+    aria-label="البحث في المكتبة الطبية"
+    style="width:100%;padding:14px;border:1px solid #e2e5df;border-radius:10px;margin-bottom:18px"
+  >
+
+  <div class="grid" id="medicalResults"></div>
+
+  <div id="medicalReader" class="card" hidden
+    style="margin-top:22px">
+    <button class="btn" type="button"
+      onclick="closeMedicalArticle()">رجوع إلى المكتبة</button>
+    <div id="medicalArticleContent"></div>
+  </div>
+
+  <p class="muted" id="medicalEmpty" hidden>
+    لا توجد نتائج مطابقة. جرّب كلمة أخرى.
+  </p>
+</section>
+
+<script>
+const midadArticles = [
+  {
+    id: "cells",
+    title: "مقدمة في الخلية",
+    en: "Introduction to the Cell",
+    category: "علم الأحياء",
+    keywords: "خلية خلايا cell cells biology",
+    objectives: [
+      "التعرف على الخلية بوصفها الوحدة الأساسية للحياة.",
+      "تمييز الفكرة العامة عن وظيفة بعض مكونات الخلية."
+    ],
+    body: [
+      {
+        heading: "ما الخلية؟",
+        text: "الخلية هي الوحدة الأساسية في بناء الكائنات الحية ووظائفها. تختلف الخلايا في أشكالها وأحجامها وتخصصاتها."
+      },
+      {
+        heading: "مكونات أساسية",
+        text: "الغشاء الخلوي ينظم مرور المواد بين الخلية وبيئتها، والسيتوبلازم يضم مكونات خلوية عديدة، بينما تحمل النواة معظم المادة الوراثية في الخلايا حقيقية النواة."
+      },
+      {
+        heading: "الخلاصة",
+        text: "يساعد فهم بنية الخلية على استيعاب الأنسجة والأعضاء والعمليات الحيوية التي تُدرَس في العلوم الطبية."
+      }
+    ],
+    references: [
+      {
+        label: "OpenStax Biology 2e",
+        url: "https://openstax.org/details/books/biology-2e"
+      }
+    ]
+  },
+  {
+    id: "heart",
+    title: "مقدمة في تشريح القلب",
+    en: "Introduction to Heart Anatomy",
+    category: "علم التشريح",
+    keywords: "القلب heart anatomy أذين بطين صمام",
+    objectives: [
+      "التعرف على الحجرات الأربع للقلب.",
+      "فهم الدور العام للصمامات واتجاه جريان الدم."
+    ],
+    body: [
+      {
+        heading: "حجرات القلب",
+        text: "يتكون القلب من أذين أيمن وأذين أيسر وبطين أيمن وبطين أيسر. تستقبل الأذينات الدم، بينما تضخه البطينات إلى مسارات الدورة الدموية."
+      },
+      {
+        heading: "الصمامات",
+        text: "تساعد صمامات القلب على توجيه الدم في اتجاهه الصحيح وتقليل رجوعه إلى الحجرة السابقة."
+      },
+      {
+        heading: "الخلاصة",
+        text: "يرتبط فهم الحجرات والصمامات بفهم الدورة الدموية. هذا شرح تمهيدي ولا يغني عن دراسة التشريح من مرجع أكاديمي."
+      }
+    ],
+    references: [
+      {
+        label: "OpenStax Anatomy and Physiology 2e",
+        url: "https://openstax.org/details/books/anatomy-and-physiology-2e"
+      }
+    ]
+  },
+  {
+    id: "physiology",
+    title: "ما علم وظائف الأعضاء؟",
+    en: "What Is Physiology?",
+    category: "علم وظائف الأعضاء",
+    keywords: "وظائف الأعضاء physiology الجسم function",
+    objectives: [
+      "تعريف علم وظائف الأعضاء.",
+      "التمييز بين التركيب والوظيفة."
+    ],
+    body: [
+      {
+        heading: "التعريف",
+        text: "يدرس علم وظائف الأعضاء كيفية عمل الخلايا والأنسجة والأعضاء والأجهزة الحية، وكيفية تنظيم وظائفها وتفاعلها."
+      },
+      {
+        heading: "الفرق عن علم التشريح",
+        text: "يركز علم التشريح على البنية والتركيب، بينما يركز علم وظائف الأعضاء على كيفية أداء البنى لوظائفها. ويرتبط المجالان ارتباطًا وثيقًا."
+      },
+      {
+        heading: "الخلاصة",
+        text: "يساعد الجمع بين دراسة البنية والوظيفة على بناء فهم متكامل للجسم البشري."
+      }
+    ],
+    references: [
+      {
+        label: "OpenStax Anatomy and Physiology 2e",
+        url: "https://openstax.org/details/books/anatomy-and-physiology-2e"
+      }
+    ]
+  }
+];
+
+const medicalSearch = document.getElementById("medicalSearch");
+const medicalResults = document.getElementById("medicalResults");
+const medicalEmpty = document.getElementById("medicalEmpty");
+const medicalReader = document.getElementById("medicalReader");
+const medicalArticleContent = document.getElementById("medicalArticleContent");
+
+function renderMedicalLibrary(query = "") {
+  const q = query.trim().toLocaleLowerCase();
+  const filtered = midadArticles.filter(article => {
+    const searchable = [
+      article.title,
+      article.en,
+      article.category,
+      article.keywords
+    ].join(" ").toLocaleLowerCase();
+
+    return searchable.includes(q);
+  });
+
+  medicalResults.innerHTML = filtered.map(article => `
+    <article class="card">
+      <span class="tag">${article.category}</span>
+      <h3>${article.title}</h3>
+      <p>${article.en}</p>
+      <p>${article.objectives[0]}</p>
+      <button class="btn" type="button"
+        onclick="openMedicalArticle('${article.id}')">
+        اقرأ الموضوع
+      </button>
+    </article>
+  `).join("");
+
+  medicalEmpty.hidden = filtered.length !== 0;
+}
+
+function openMedicalArticle(id) {
+  const article = midadArticles.find(item => item.id === id);
+  if (!article) return;
+
+  medicalArticleContent.innerHTML = `
+    <h2>${article.title}</h2>
+    <p class="muted">${article.en} · ${article.category}</p>
+    <h3>الأهداف التعليمية</h3>
+    <ul>${article.objectives.map(item => `<li>${item}</li>`).join("")}</ul>
+    ${article.body.map(section => `
+      <section>
+        <h3>${section.heading}</h3>
+        <p>${section.text}</p>
+      </section>
+    `).join("")}
+    <h3>المراجع المقترحة</h3>
+    <ul>${article.references.map(ref => `
+      <li><a href="${ref.url}" target="_blank"
+        rel="noopener noreferrer">${ref.label}</a></li>
+    `).join("")}</ul>
+    <p class="muted">محتوى تعليمي تمهيدي. راجع المرجع الأكاديمي للتوسع.</p>
+  `;
+
+  medicalResults.hidden = true;
+  medicalSearch.hidden = true;
+  medicalEmpty.hidden = true;
+  medicalReader.hidden = false;
+  medicalReader.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closeMedicalArticle() {
+  medicalReader.hidden = true;
+  medicalResults.hidden = false;
+  medicalSearch.hidden = false;
+  renderMedicalLibrary(medicalSearch.value);
+  document.getElementById("medical-library").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+medicalSearch.addEventListener("input", event => {
+  renderMedicalLibrary(event.target.value);
+});
+
+renderMedicalLibrary();
+</script>
+</body>
 </html>
   
