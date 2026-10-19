@@ -919,7 +919,69 @@ renderGlossary();
     في مراحل لاحقة مع توثيق مصادرها وتراخيصها.
   </p>
 </section>
+
+
+  
 <script>
+const atlasData = {
+  circulatory: {
+    title: "الجهاز الدوري",
+    english: "Circulatory System",
+    structure: "يتضمن القلب والدم والأوعية الدموية، ومنها الشرايين والأوردة والشعيرات الدموية.",
+    function: "نقل الأكسجين والمواد الغذائية والهرمونات، والمساهمة في نقل الفضلات وتنظيم حرارة الجسم.",
+    fact: "تتضمن الدورة الدموية البشرية دورة رئوية لتبادل الغازات ودورة جهازية لنقل الدم بين القلب وبقية الجسم."
+  },
+  nervous: {
+    title: "الجهاز العصبي",
+    english: "Nervous System",
+    structure: "يتكون من الجهاز العصبي المركزي، الذي يشمل الدماغ والحبل الشوكي، والجهاز العصبي المحيطي.",
+    function: "استقبال المعلومات الحسية ومعالجتها وتنسيق الاستجابات والتحكم في العديد من وظائف الجسم.",
+    fact: "تنتقل المعلومات العصبية عبر إشارات كهربائية وكيميائية، بحسب نوع الخلية والاتصال العصبي."
+  },
+  respiratory: {
+    title: "الجهاز التنفسي",
+    english: "Respiratory System",
+    structure: "يشمل الممرات الهوائية والرئتين والحويصلات الهوائية، إضافة إلى عضلات تساعد في التنفس.",
+    function: "إدخال الأكسجين إلى الجسم والتخلص من ثاني أكسيد الكربون عبر تبادل الغازات.",
+    fact: "تحدث معظم عملية تبادل الغازات في الحويصلات الهوائية المحاطة بشبكة من الشعيرات الدموية."
+  },
+  skeletal: {
+    title: "الجهاز الهيكلي",
+    english: "Skeletal System",
+    structure: "يتكون من العظام والغضاريف والمفاصل وبنى داعمة أخرى.",
+    function: "دعم الجسم وحماية بعض الأعضاء والمساهمة في الحركة وتخزين المعادن وتكوين خلايا الدم في نقي العظم.",
+    fact: "تعمل العظام مع العضلات والمفاصل لتوفير الحركة والثبات."
+  }
+};
+
+function selectAtlasSystem(id) {
+  const item = atlasData[id];
+  if (!item) return;
+
+  document.getElementById("atlasTag").textContent = "علم التشريح";
+  document.getElementById("atlasTitle").textContent = item.title;
+  document.getElementById("atlasEnglish").textContent = item.english;
+  document.getElementById("atlasStructure").textContent = item.structure;
+  document.getElementById("atlasFunction").textContent = item.function;
+  document.getElementById("atlasFact").textContent = item.fact;
+
+  document.getElementById("atlasSystems").hidden = true;
+  document.getElementById("atlasDetails").hidden = false;
+  document.getElementById("atlasDetails").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function closeAtlasDetails() {
+  document.getElementById("atlasDetails").hidden = true;
+  document.getElementById("atlasSystems").hidden = false;
+  document.getElementById("atlasSystems").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+  <script>
 /* ===== نظام المفضلة في مداد الطبي ===== */
 
 const MedadFavorites = {
@@ -1000,67 +1062,6 @@ const MedadFavorites = {
     }
   }
 };
-
-  
-<script>
-const atlasData = {
-  circulatory: {
-    title: "الجهاز الدوري",
-    english: "Circulatory System",
-    structure: "يتضمن القلب والدم والأوعية الدموية، ومنها الشرايين والأوردة والشعيرات الدموية.",
-    function: "نقل الأكسجين والمواد الغذائية والهرمونات، والمساهمة في نقل الفضلات وتنظيم حرارة الجسم.",
-    fact: "تتضمن الدورة الدموية البشرية دورة رئوية لتبادل الغازات ودورة جهازية لنقل الدم بين القلب وبقية الجسم."
-  },
-  nervous: {
-    title: "الجهاز العصبي",
-    english: "Nervous System",
-    structure: "يتكون من الجهاز العصبي المركزي، الذي يشمل الدماغ والحبل الشوكي، والجهاز العصبي المحيطي.",
-    function: "استقبال المعلومات الحسية ومعالجتها وتنسيق الاستجابات والتحكم في العديد من وظائف الجسم.",
-    fact: "تنتقل المعلومات العصبية عبر إشارات كهربائية وكيميائية، بحسب نوع الخلية والاتصال العصبي."
-  },
-  respiratory: {
-    title: "الجهاز التنفسي",
-    english: "Respiratory System",
-    structure: "يشمل الممرات الهوائية والرئتين والحويصلات الهوائية، إضافة إلى عضلات تساعد في التنفس.",
-    function: "إدخال الأكسجين إلى الجسم والتخلص من ثاني أكسيد الكربون عبر تبادل الغازات.",
-    fact: "تحدث معظم عملية تبادل الغازات في الحويصلات الهوائية المحاطة بشبكة من الشعيرات الدموية."
-  },
-  skeletal: {
-    title: "الجهاز الهيكلي",
-    english: "Skeletal System",
-    structure: "يتكون من العظام والغضاريف والمفاصل وبنى داعمة أخرى.",
-    function: "دعم الجسم وحماية بعض الأعضاء والمساهمة في الحركة وتخزين المعادن وتكوين خلايا الدم في نقي العظم.",
-    fact: "تعمل العظام مع العضلات والمفاصل لتوفير الحركة والثبات."
-  }
-};
-
-function selectAtlasSystem(id) {
-  const item = atlasData[id];
-  if (!item) return;
-
-  document.getElementById("atlasTag").textContent = "علم التشريح";
-  document.getElementById("atlasTitle").textContent = item.title;
-  document.getElementById("atlasEnglish").textContent = item.english;
-  document.getElementById("atlasStructure").textContent = item.structure;
-  document.getElementById("atlasFunction").textContent = item.function;
-  document.getElementById("atlasFact").textContent = item.fact;
-
-  document.getElementById("atlasSystems").hidden = true;
-  document.getElementById("atlasDetails").hidden = false;
-  document.getElementById("atlasDetails").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-function closeAtlasDetails() {
-  document.getElementById("atlasDetails").hidden = true;
-  document.getElementById("atlasSystems").hidden = false;
-  document.getElementById("atlasSystems").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
 </script>
 </body>
 </html>
