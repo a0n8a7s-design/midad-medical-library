@@ -919,7 +919,89 @@ renderGlossary();
     في مراحل لاحقة مع توثيق مصادرها وتراخيصها.
   </p>
 </section>
+<script>
+/* ===== نظام المفضلة في مداد الطبي ===== */
 
+const MedadFavorites = {
+  storageKey: "medad_medical_favorites",
+
+  getAll() {
+    try {
+      const items = JSON.parse(
+        localStorage.getItem(this.storageKey) || "[]"
+      );
+      return Array.isArray(items) ? items : [];
+    } catch (error) {
+      console.error("تعذر قراءة المفضلة:", error);
+      return [];
+    }
+  },
+
+  isFavorite(id) {
+    return this.getAll().some(item => item.id === String(id));
+  },
+
+  add(item) {
+    if (!item || item.id == null || !item.title) {
+      return false;
+    }
+
+    const items = this.getAll();
+    const id = String(item.id);
+
+    if (items.some(saved => saved.id === id)) {
+      return false;
+    }
+
+    items.push({
+      id,
+      title: String(item.title),
+      type: String(item.type || "مادة طبية"),
+      url: String(item.url || ""),
+      savedAt: new Date().toISOString()
+    });
+
+    try {
+      localStorage.setItem(
+        this.storageKey,
+        JSON.stringify(items)
+      );
+      return true;
+    } catch (error) {
+      console.error("تعذر حفظ المفضلة:", error);
+      return false;
+    }
+  },
+
+  remove(id) {
+    const items = this.getAll().filter(
+      item => item.id !== String(id)
+    );
+
+    try {
+      localStorage.setItem(
+        this.storageKey,
+        JSON.stringify(items)
+      );
+      return true;
+    } catch (error) {
+      console.error("تعذر تحديث المفضلة:", error);
+      return false;
+    }
+  },
+
+  clear() {
+    try {
+      localStorage.removeItem(this.storageKey);
+      return true;
+    } catch (error) {
+      console.error("تعذر مسح المفضلة:", error);
+      return false;
+    }
+  }
+};
+
+  
 <script>
 const atlasData = {
   circulatory: {
