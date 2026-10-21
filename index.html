@@ -1,17 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>علوم طبية | MedScience - المنصة التعليمية والأكاديمية</title>
+    <title>موسوعة العلوم الطبية الشاملة | Comprehensive Medical Sciences Portal</title>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Cairo) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -19,1045 +14,291 @@
                 extend: {
                     colors: {
                         medical: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            200: '#99f6e4',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                            900: '#134e4a',
-                            navy: '#0f172a',
-                            accent: '#2563eb'
+                            50: '#f0f9ff', 100: '#e0f2fe', 500: '#06b6d4', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #14b8a6;
-            border-radius: 10px;
-        }
+        body { font-family: 'Cairo', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-teal-600 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-dna text-2xl"></i>
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-teal-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg shadow-sky-500/30">
+                    <i class="fa-solid fa-stethoscope"></i>
                 </div>
                 <div>
-                    <span class="text-2xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">علوم طبية</span>
-                    <span class="block text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400">MedScience Portal</span>
+                    <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+                        المنصة <span class="text-sky-600 dark:text-sky-400">الطبية الشاملة</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">المرجع الأكاديمي والتفاعلي الموحد</p>
                 </div>
-            </a>
+            </div>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center gap-6 font-medium text-sm">
-                <a href="#home" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">الرئيسية</a>
-                <a href="#departments" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">الأقسام</a>
-                <a href="#articles" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">الأبحاث والمقالات</a>
-                <a href="#tools" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">الأدوات والحاسبات</a>
-                <a href="#quizzes" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">الاختبارات</a>
-                <a href="#dictionary" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">القاموس الطبي</a>
-                <a href="#github-deploy" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">رفع واستضافة</a>
+            <nav class="hidden lg:flex items-center space-x-8 space-x-reverse font-bold text-sm">
+                <a href="#library" class="hover:text-sky-600 dark:hover:text-sky-400 transition">المكتبة والكتب</a>
+                <a href="#summaries" class="hover:text-sky-600 dark:hover:text-sky-400 transition">الأمراض والملخصات</a>
+                <a href="#diagrams" class="hover:text-sky-600 dark:hover:text-sky-400 transition">المخططات والفسيولوجيا</a>
+                <a href="#calculators" class="hover:text-sky-600 dark:hover:text-sky-400 transition">الحاسبات السريرية</a>
+                <a href="#dictionary" class="hover:text-sky-600 dark:hover:text-sky-400 transition">القاموس الطبي</a>
             </nav>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-3">
-                <!-- Search Trigger -->
-                <button onclick="toggleSearchModal(true)" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-slate-700 hover:text-teal-600 transition-colors" title="بحث في العلوم الطبية">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-                <!-- Theme Toggle -->
-                <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-slate-700 hover:text-teal-600 transition-colors" title="تبديل المظهر">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
-                </button>
-
-                <!-- Mobile menu toggle -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3">
-            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">الرئيسية</a>
-            <a href="#departments" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">الأقسام</a>
-            <a href="#articles" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">الأبحاث والمقالات</a>
-            <a href="#tools" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">الأدوات والحاسبات</a>
-            <a href="#quizzes" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">الاختبارات</a>
-            <a href="#dictionary" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">القاموس الطبي</a>
-            <a href="#github-deploy" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-teal-600">رفع واستضافة</a>
+            <button id="themeToggle" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                <i class="fa-solid fa-sun hidden dark:block text-amber-400 text-lg"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow">
-
-        <!-- HERO SECTION -->
-        <section id="home" class="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-teal-50/50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid lg:grid-cols-12 gap-12 items-center">
-                    
-                    <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300 text-xs font-semibold border border-teal-200 dark:border-teal-800">
-                            <i class="fa-solid fa-microscope"></i>
-                            <span>منصة المعرفة الطبية والأكاديمية الموثوقة</span>
-                        </div>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
-                            استكشف عمق <span class="bg-gradient-to-r from-teal-600 via-teal-500 to-blue-600 bg-clip-text text-transparent">العلوم الطبية</span> والحيوية
-                        </h1>
-                        <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                            بوابة شاملة تجمع بين الأبحاث العلمية الموثوقة، الأدوات والحاسبات السريرية التفاعلية، والقاموس الطبي الأكاديمي لطلاب وأطباء وباحثي العلوم الطبية.
-                        </p>
-                        
-                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                            <a href="#departments" class="px-7 py-3.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold shadow-lg shadow-teal-600/30 transition-all flex items-center gap-2">
-                                <span>استكشف الأقسام</span>
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </a>
-                            <a href="#tools" class="px-7 py-3.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-teal-500 font-bold text-slate-700 dark:text-slate-200 hover:text-teal-600 transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-calculator text-teal-500"></i>
-                                <span>الحاسبات الطبية</span>
-                            </a>
-                        </div>
-
-                        <!-- Stats Counter -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-200 dark:border-slate-800">
-                            <div class="p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
-                                <div class="text-2xl font-extrabold text-teal-600 dark:text-teal-400">+150</div>
-                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">بحث ومقال علمي</div>
-                            </div>
-                            <div class="p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
-                                <div class="text-2xl font-extrabold text-blue-600 dark:text-blue-400">3+</div>
-                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">حاسبات تفاعلية</div>
-                            </div>
-                            <div class="p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
-                                <div class="text-2xl font-extrabold text-teal-600 dark:text-teal-400">+500</div>
-                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">مصطلح بالقاموس</div>
-                            </div>
-                            <div class="p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
-                                <div class="text-2xl font-extrabold text-blue-600 dark:text-blue-400">100%</div>
-                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">مجاني وأكاديمي</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Visual Graphic Card -->
-                    <div class="lg:col-span-5 relative">
-                        <div class="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-tr from-teal-500 to-blue-600 p-1 rounded-3xl shadow-2xl">
-                            <div class="bg-slate-900 rounded-[22px] p-6 text-white space-y-6">
-                                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center">
-                                            <i class="fa-solid fa-heart-pulse text-xl"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-sm">البوابة الحيوية التفاعلية</h4>
-                                            <p class="text-xs text-slate-400">Interactive Bio-Medical</p>
-                                        </div>
-                                    </div>
-                                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                                </div>
-
-                                <div class="space-y-3">
-                                    <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fa-solid fa-capsules text-teal-400"></i>
-                                            <span class="text-xs font-semibold">علم الأدوية (Pharmacology)</span>
-                                        </div>
-                                        <span class="text-xs px-2 py-0.5 rounded bg-teal-950 text-teal-300">مُحدث</span>
-                                    </div>
-                                    <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fa-solid fa-notes-medical text-blue-400"></i>
-                                            <span class="text-xs font-semibold">الفسيولوجيا (Physiology)</span>
-                                        </div>
-                                        <span class="text-xs px-2 py-0.5 rounded bg-blue-950 text-blue-300">نشط</span>
-                                    </div>
-                                    <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fa-solid fa-virus text-purple-400"></i>
-                                            <span class="text-xs font-semibold">الأحياء الدقيقة (Microbiology)</span>
-                                        </div>
-                                        <span class="text-xs px-2 py-0.5 rounded bg-purple-950 text-purple-300">جديد</span>
-                                    </div>
-                                </div>
-
-                                <div class="p-4 rounded-xl bg-gradient-to-r from-teal-900/50 to-blue-900/50 border border-teal-500/30 text-center">
-                                    <p class="text-xs text-teal-200">"العلم الطبي ليس مجرد معلومات، بل منهج يهدف لخدمة الإنسان وحماية حياته."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+    <!-- Hero Search Section -->
+    <section class="py-16 bg-gradient-to-b from-sky-500/10 via-transparent to-transparent">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+                قاعدة المعرفة الطبية الموحدة <span class="text-sky-600 dark:text-sky-400">لكل التخصصات</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-lg">
+                تصفح الكتب العالمية، ملخصات الأمراض، المخططات الفسيولوجية، والحاسبات الطبية في مكان واحد.
+            </p>
+            <div class="relative max-w-2xl mx-auto">
+                <input type="text" id="globalSearch" onkeyup="globalSearchFilter()" placeholder="ابحث عن كتاب، مرض، مصطلح، أو فسيولوجيا (مثال: Guyton, Diabetes, Cardiac)..." 
+                    class="w-full px-6 py-4 rounded-2xl border-2 border-sky-200 dark:border-slate-700 dark:bg-slate-800 text-lg focus:outline-none focus:border-sky-500 shadow-xl transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></i>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- DEPARTMENTS SECTION -->
-        <section id="departments" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">تخصصات العلوم الطبية الأكاديمية</h2>
-                <p class="text-slate-600 dark:text-slate-400">اختر التخصص الطبي لاستعراض المفاهيم الأساسية، الفروع، والمواضيع الأكثر أهمية فيه.</p>
+    <!-- Medical Books Library Section -->
+    <section id="library" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-8 border-r-4 border-sky-600 pr-4">
+            <div>
+                <h3 class="text-2xl font-black text-slate-900 dark:text-white">أمهات الكتب والمراجع الطبية العالمية</h3>
+                <p class="text-sm text-slate-500">المراجع الأساسية المعتمدة في كليات الطب العالمية</p>
             </div>
+        </div>
+        <div id="booksGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Dynamic Books Cards generated via JS -->
+        </div>
+    </section>
 
-            <!-- Grid Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="deptGrid">
-                <!-- Physiology -->
-                <div onclick="showDeptDetails('physio')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">علم وظائف الأعضاء (Physiology)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">دراسة آلية عمل الخلية، الأنسجة، والأجهزة الحيوية المختلفة داخل جسم الإنسان لضمان التوازن الداخلي (Homeostasis).</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+    <!-- Interactive Diagrams & Physiology Section -->
+    <section id="diagrams" class="py-12 bg-slate-100 dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 border-r-4 border-teal-500 pr-4">
+                <h3 class="text-2xl font-black text-slate-900 dark:text-white">المخططات والرسوم البيانية الفسيولوجية</h3>
+                <p class="text-sm text-slate-500">تحليل الحجم الحيوي والجهد القلبي والتدفقات الحيوية</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-heart-pulse text-red-500"></i> نتاج القلب والحجم الضربي (Cardiac Output)
+                    </h4>
+                    <div class="h-64">
+                        <canvas id="cardiacChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Anatomy & Histology -->
-                <div onclick="showDeptDetails('anatomy')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-bone"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">علم التشريح والأنسجة (Anatomy & Histology)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">دراسة البنية التشاركية والجوفية لأعضاء الجسم، والتركيب المجهري الدقيق للأنسجة الخلايا المختلفة.</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                    </div>
-                </div>
-
-                <!-- Biochemistry -->
-                <div onclick="showDeptDetails('biochem')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-flask"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">الكيمياء الحيوية (Biochemistry)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">استكشاف التفاعلات الكيميائية، الإنزيمات، التمثيل الغذائي (Metabolism)، والحمض النووي (DNA/RNA).</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                    </div>
-                </div>
-
-                <!-- Pharmacology -->
-                <div onclick="showDeptDetails('pharma')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                    </div>
-                </div>
-
-                <!-- Pharmacology -->
-                <div onclick="showDeptDetails('pharma')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-pills"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">علم الأدوية (Pharmacology)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">دراسة حركة العقاقير وتأثيرها الحيوية داخل الجسم (Pharmacokinetics & Pharmacodynamics).</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                    </div>
-                </div>
-
-                <!-- Pathology -->
-                <div onclick="showDeptDetails('patho')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-microscope"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">علم الأمراض (Pathology)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">فهم أسباب المرض، مسبباته التطورية، والتغيرات الهيكلية والوظيفية للأعضاء المصابة.</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                    </div>
-                </div>
-
-                <!-- Microbiology -->
-                <div onclick="showDeptDetails('micro')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 dark:hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-virus"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">الأحياء الدقيقة (Microbiology)</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">دراسة البكتيريا، الفيروسات، الفطريات والطفيليات وآليات المناعة والجهاز المناعي المكتسب.</p>
-                    <div class="flex items-center text-xs font-bold text-teal-600 dark:text-teal-400 gap-1">
-                        <span>عرض التفاصيل والمواضيع</span>
-                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-lungs text-sky-500"></i> أحجام وسعات الرئة (Lung Volumes)
+                    </h4>
+                    <div class="h-64">
+                        <canvas id="lungChart"></canvas>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Dynamic Department Detail Preview Box -->
-            <div id="deptDetailBox" class="hidden mt-8 p-6 rounded-2xl bg-teal-50 dark:bg-slate-800/90 border border-teal-200 dark:border-teal-800/60 transition-all">
-                <div class="flex items-center justify-between mb-4">
-                    <h4 id="deptDetailTitle" class="text-xl font-extrabold text-teal-900 dark:text-teal-300"></h4>
-                    <button onclick="hideDeptDetails()" class="text-sm font-semibold text-slate-500 hover:text-rose-500">
-                        <i class="fa-solid fa-xmark text-lg"></i> إغلاق
-                    </button>
-                </div>
-                <p id="deptDetailDesc" class="text-slate-700 dark:text-slate-300 mb-4 text-sm leading-relaxed"></p>
-                <div class="font-bold text-xs text-slate-500 mb-2">أبرز المحاور الدراسية:</div>
-                <ul id="deptDetailTopics" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs font-medium text-slate-700 dark:text-slate-300"></ul>
-            </div>
-        </section>
+    <!-- Summaries & Pathology Section -->
+    <section id="summaries" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 border-r-4 border-amber-500 pr-4">
+            <h3 class="text-2xl font-black text-slate-900 dark:text-white">ملخصات علم الأمراض والتشخيص السريري (Pathology)</h3>
+            <p class="text-sm text-slate-500">مراجعات مركزة ومبسطة لأهم الأمراض والبروتوكولات العلاجية</p>
+        </div>
+        <div id="summariesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Dynamic Disease Summaries -->
+        </div>
+    </section>
 
-        <!-- MEDICAL CALCULATORS & TOOLS SECTION -->
-        <section id="tools" class="py-16 bg-slate-100/70 dark:bg-slate-800/40 border-y border-slate-200 dark:border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 text-xs font-bold mb-3">
-                        <i class="fa-solid fa-calculator"></i>
-                        <span>أدوات سريرية وحسابية</span>
-                    </div>
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">الأدوات والحاسبات الطبية التفاعلية</h2>
-                    <p class="text-slate-600 dark:text-slate-400">مجموعة من الحاسبات الطبية الدقيقة المعتمدة على المعادلات العلمية لمساعدة الطلاب والأطباء.</p>
-                </div>
-
-                <!-- Calculator Tabs -->
-                <div class="max-w-4xl mx-auto">
-                    <div class="flex flex-wrap justify-center gap-2 mb-8 bg-white dark:bg-slate-900 p-2 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-                        <button onclick="switchCalcTab('bmi')" id="tab-bmi" class="calc-tab px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-teal-600 text-white">
-                            <i class="fa-solid fa-weight-scale ml-2"></i> مؤشر كتلة الجسم (BMI)
-                        </button>
-                        <button onclick="switchCalcTab('egfr')" id="tab-egfr" class="calc-tab px-5 py-2.5 rounded-xl text-sm font-bold transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                            <i class="fa-solid fa-kidneys ml-2"></i> ترشيح الكلية (eGFR)
-                        </button>
-                        <button onclick="switchCalcTab('dose')" id="tab-dose" class="calc-tab px-5 py-2.5 rounded-xl text-sm font-bold transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                            <i class="fa-solid fa-syringe ml-2"></i> جرعات الأدوية (Dosage)
-                        </button>
-                    </div>
-
-                    <!-- TAB 1: BMI CALCULATOR -->
-                    <div id="calc-bmi" class="calc-content bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white border-b pb-3 border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <span>حاسبة مؤشر كتلة الجسم (Body Mass Index)</span>
-                            <span class="text-xs text-teal-600 dark:text-teal-400 font-normal">معيار منظمة الصحة العالمية (WHO)</span>
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الوزن (كيلوجرام)</label>
-                                    <input type="number" id="bmiWeight" placeholder="مثال: 70" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الطول (سنتيمتر)</label>
-                                    <input type="number" id="bmiHeight" placeholder="مثال: 175" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                </div>
-                                <button onclick="calculateBMI()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition">حساب المؤشر</button>
-                            </div>
-                            <div id="bmiResultBox" class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-center text-center">
-                                <div class="text-xs text-slate-500 mb-1">النتيجة الطبية:</div>
-                                <div id="bmiValue" class="text-4xl font-extrabold text-slate-800 dark:text-white mb-2">--</div>
-                                <div id="bmiStatus" class="text-sm font-bold text-teal-600 dark:text-teal-400 mb-3">أدخل بياناتك للحساب</div>
-                                <p id="bmiAdvice" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تستعمل هذه الحاسبة لتقييم الوزن بالنسبة للطول وتقدير المخاطر الصحية المرتبطة بالسمنة أو النحافة.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 2: eGFR CALCULATOR -->
-                    <div id="calc-egfr" class="calc-content hidden bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white border-b pb-3 border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <span>حاسبة معدل الترشيح الكبيبي (eGFR - CKD-EPI)</span>
-                            <span class="text-xs text-teal-600 dark:text-teal-400 font-normal">تقييم كفاءة ووظائف الكلى</span>
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">مستوى الكرياتينين في الدم (Serum Creatinine - mg/dL)</label>
-                                    <input type="number" step="0.1" id="egfrScr" placeholder="مثال: 1.0" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">العمر (سنة)</label>
-                                        <input type="number" id="egfrAge" placeholder="30" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الجنس</label>
-                                        <select id="egfrGender" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                            <option value="male">ذكر (Male)</option>
-                                            <option value="female">أنثى (Female)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <button onclick="calculateEGFR()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition">حساب eGFR</button>
-                            </div>
-                            <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-center text-center">
-                                <div class="text-xs text-slate-500 mb-1">المعدل المقدر (mL/min/1.73m²):</div>
-                                <div id="egfrValue" class="text-4xl font-extrabold text-slate-800 dark:text-white mb-2">--</div>
-                                <div id="egfrStatus" class="text-sm font-bold text-teal-600 dark:text-teal-400 mb-3">أدخل الكرياتينين والعمر للحساب</div>
-                                <p id="egfrAdvice" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">معدل الترشيح الطبيعي فوق 90 mL/min. تُستخدم هذه الحاسبة لتقييم صحة الكليتين ومراحل القصور الكلوي.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 3: DOSAGE CALCULATOR -->
-                    <div id="calc-dose" class="calc-content hidden bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white border-b pb-3 border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <span>حاسبة الجرعة الدوائية (Pediatric/Adult Dosage)</span>
-                            <span class="text-xs text-teal-600 dark:text-teal-400 font-normal">بناءً على الوزن والتركيز</span>
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">وزن المريض (كجم)</label>
-                                    <input type="number" id="doseWeight" placeholder="مثال: 15" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الجرعة المطلوبة (ملجم لكل كجم / mg/kg)</label>
-                                    <input type="number" id="doseTarget" placeholder="مثال: 10" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">تركيز الدواء (mg)</label>
-                                        <input type="number" id="doseConcMg" placeholder="مثال: 250" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">لكل حجم (mL)</label>
-                                        <input type="number" id="doseConcMl" placeholder="مثال: 5" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition">
-                                    </div>
-                                </div>
-                                <button onclick="calculateDosage()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition">حساب الجرعة</button>
-                            </div>
-                            <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-center text-center">
-                                <div class="text-xs text-slate-500 mb-1">الجرعة الكلية المطلوبة:</div>
-                                <div id="doseMgResult" class="text-3xl font-extrabold text-teal-600 dark:text-teal-400 mb-1">-- mg</div>
-                                <div class="text-xs text-slate-500 mb-1">الحجم السائل المطلوب إعطاؤه:</div>
-                                <div id="doseMlResult" class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 mb-3">-- mL</div>
-                                <p class="text-[11px] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 p-2.5 rounded-xl border border-amber-200 dark:border-amber-800">تنبيه أمان: هذه الحاسبة مخصصة للأغراض الأكاديمية والتعليمية. يجب دائماً التأكد من الجرعة المعتمدة واستشارة الطبيب أو الصيدلي السريري.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- RESEARCH & ARTICLES SECTION -->
-        <section id="articles" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">الأبحاث والمقالات العلمية</h2>
-                    <p class="text-slate-600 dark:text-slate-400">ملخصات علمية حديثة وموثقة في أحدث التطورات الطبية الحيوية.</p>
-                </div>
-                
-                <!-- Category Filter Buttons -->
-                <div class="flex flex-wrap gap-2" id="articleFilters">
-                    <button onclick="filterArticles('all')" class="art-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white">الكل</button>
-                    <button onclick="filterArticles('physio')" class="art-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">الفسيولوجيا</button>
-                    <button onclick="filterArticles('pharma')" class="art-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">الفارماكولوجي</button>
-                    <button onclick="filterArticles('biochem')" class="art-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">الكيمياء الحيوية</button>
-                </div>
+    <!-- Clinical Calculators Section -->
+    <section id="calculators" class="py-12 bg-slate-100 dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 border-r-4 border-blue-600 pr-4">
+                <h3 class="text-2xl font-black text-slate-900 dark:text-white">الحاسبات السريرية المعتمدة</h3>
+                <p class="text-sm text-slate-500">أدوات حسابية طبية فورية للجرعات ومؤشرات الجسم</p>
             </div>
 
-            <!-- Articles Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articlesGrid">
-                
-                <!-- Article 1 -->
-                <article class="article-card cat-physio bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 hover:shadow-lg transition flex flex-col">
-                    <div class="p-6 flex-grow flex flex
--col justify-between">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- BMI Calculator -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-weight-scale text-blue-600"></i> مؤشر كتلة الجسم (BMI)
+                    </h4>
+                    <div class="space-y-4">
                         <div>
-                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span class="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-bold">علم الأدوية</span>
-                                <span><i class="fa-regular fa-clock ml-1"></i> 7 دقائق قراءة</span>
-                            </div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 hover:text-teal-600 transition">مستقبلات البيتا ومثبطاتها: الديناميكية الدوائية</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">دراسة الفرق بين حاصرات بيتا الانتقائية وغير الانتقائية، والتطبيقات السريرية في أمراض القلب والضغط...</p>
+                            <label class="block text-sm font-semibold mb-1">الوزن (كجم)</label>
+                            <input type="number" id="bmiWeight" placeholder="مثال: 75" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <button onclick="openArticleModal(2)" class="w-full py-2.5 rounded-xl border border-teal-500 text-teal-600 dark:text-teal-400 font-bold text-xs hover:bg-teal-500 hover:text-white transition">قراءة البحث كاملاً</button>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="article-card cat-biochem bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 hover:shadow-lg transition flex flex-col">
-                    <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span class="px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 font-bold">الكيمياء الحيوية</span>
-                                <span><i class="fa-regular fa-clock ml-1"></i> 6 دقائق قراءة</span>
-                            </div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 hover:text-teal-600 transition">دورة كريبس (Krebs Cycle) وإنتاج الطاقة الخلوية (ATP)</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">تحليل خطوات الأكسدة الخلوية داخل الميتوكندريا وتوليد جزيئات الطاقة، والربط بالأمراض الاستقلابية...</p>
+                            <label class="block text-sm font-semibold mb-1">الطول (سم)</label>
+                            <input type="number" id="bmiHeight" placeholder="مثال: 178" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <button onclick="openArticleModal(3)" class="w-full py-2.5 rounded-xl border border-teal-500 text-teal-600 dark:text-teal-400 font-bold text-xs hover:bg-teal-500 hover:text-white transition">قراءة البحث كاملاً</button>
+                        <button onclick="calculateBMI()" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">حساب المؤشر</button>
                     </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- QUIZZES & ASSESSMENT SECTION -->
-        <section id="quizzes" class="py-16 bg-slate-100/70 dark:bg-slate-800/40 border-y border-slate-200 dark:border-slate-800">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center mb-10">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 text-xs font-bold mb-3">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>اختبر معلوماتك</span>
+                    <div id="bmiResult" class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 hidden text-center">
+                        <span class="text-xs text-slate-500">النتيجة:</span>
+                        <div id="bmiValue" class="text-2xl font-extrabold text-blue-600 my-1">--</div>
+                        <div id="bmiCategory" class="font-bold text-sm">--</div>
                     </div>
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-3">الاختبارات الطبية التفاعلية</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">أجب على الأسئلة الطبية التالية لتقييم حصيلتك العلمية مع الشرح الفوري.</p>
                 </div>
 
-                <!-- Quiz Box Container -->
-                <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                    <div id="quizContainer">
-                        <!-- Header -->
-                        <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
-                            <span id="quizProgress" class="text-xs font-bold text-teal-600 dark:text-teal-400">السؤال 1 من 3</span>
-                            <span id="quizScore" class="text-xs font-bold text-slate-500">النتيجة: 0</span>
+                <!-- Dosage Calculator -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-syringe text-emerald-600"></i> حاسبة الجرعات الدوائية
+                    </h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">وزن المريض (كجم)</label>
+                            <input type="number" id="doseWeight" placeholder="مثال: 30" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-emerald-500">
                         </div>
-
-                        <!-- Question -->
-                        <h3 id="quizQuestion" class="text-lg font-bold text-slate-900 dark:text-white mb-6 leading-relaxed"></h3>
-
-                        <!-- Options -->
-                        <div id="quizOptions" class="space-y-3 mb-6"></div>
-
-                        <!-- Explanation Box -->
-                        <div id="quizExplanation" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 mb-6"></div>
-
-                        <!-- Action Button -->
-                        <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition">السؤال التالي <i class="fa-solid fa-arrow-left mr-2"></i></button>
-                    </div>
-
-                    <!-- Final Score Screen (Hidden Initially) -->
-                    <div id="quizResultScreen" class="hidden text-center py-8 space-y-4">
-                        <div class="w-20 h-20 mx-auto rounded-full bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400 flex items-center justify-center text-4xl">
-                            <i class="fa-solid fa-award"></i>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">الجرعة لكل كجم (مجم/كجم)</label>
+                            <input type="number" id="dosePerKg" placeholder="مثال: 10" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-emerald-500">
                         </div>
-                        <h3 class="text-2xlfont-extrabold text-slate-900 dark:text-white mb-3">قاموس المصطلحات الطبية</h2>
-                <p class="text-slate-600 dark:text-slate-400">ابحث عن الجذور، السوابق (Prefixes)، واللواحق (Suffixes) الطبية وترجمتها الدقيقة.</p>
-            </div>
-
-            <!-- Search Field -->
-            <div class="max-w-xl mx-auto mb-8 relative">
-                <input type="text" id="dictSearchInput" onkeyup="searchDictionary()" placeholder="ابحث عن مصطلح باللغة العربية أو الإنجليزية (مثال: Cardia, Nephro, ألم)..." class="w-full px-5 py-3.5 pr-12 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-teal-500 outline-none transition shadow-sm">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-            </div>
-
-            <!-- Dictionary Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="dictGrid">
-                <!-- Terms injected via JS -->
-            </div>
-    </section
-     </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-white font-bold text-lg">
-                        <i class="fa-solid fa-dna text-teal-500"></i>
-                        <span>علوم طبية | MedScience</span>
+                        <button onclick="calculateDosage()" class="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition">حساب الجرعة الكلية</button>
                     </div>
-                    <p class="text-xs leading-relaxed text-slate-500">منصة أكاديمية شاملة تهدف إلى إثراء المحتوى الطبي العربي بالاعتماد على المراجع والأبحاث العلمية الموثوقة.</p>
-                </div>
-
-                <div>
-                    <h5 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">روابط سريعة</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#departments" class="hover:text-teal-400 transition">تخصصات العلوم الطبية</a></li>
-                        <li><a href="#tools" class="hover:text-teal-400 transition">الحاسبات السريرية</a></li>
-                        <li><a href="#quizzes" class="hover:text-teal-400 transition">الاختبارات والتأهيل</a></li>
-                        <li><a href="#dictionary" class="hover:text-teal-400 transition">القاموس الطبي الشامل</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h5 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">الأقسام الطبية</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#departments" class="hover:text-teal-400 transition">Physiology - الفسيولوجيا</a></li>
-                        <li><a href="#departments" class="hover:text-teal-400 transition">Pharmacology - علم الأدوية</a></li>
-                        <li><a href="#departments" class="hover:text-teal-400 transition">Biochemistry - الكيمياء الحيوية</a></li>
-                        <li><a href="#departments" class="hover:text-teal-400 transition">Pathology - علم الأمراض</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-3">
-                    <h5 class="text-white font-bold text-xs uppercase tracking-wider">النشرة الطبية</h5>
-                    <p class="text-xs text-slate-500">اشترك للحصول على أحدث الملخصات والأبحاث الطبية.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="بريدك الإلكتروني..." class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs w-full outline-none focus:border-teal-500">
-                        <button class="px-4 py-2 rounded-xl bg-teal-600 text-white font-bold text-xs hover:bg-teal-700 transition">اشتراك</button>
+                    <div id="doseResult" class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 hidden text-center">
+                        <span class="text-xs text-slate-500">الجرعة الكلية المطلوبة:</span>
+                        <div id="doseValue" class="text-2xl font-extrabold text-emerald-600 my-1">--</div>
                     </div>
                 </div>
             </div>
-                        <!-- Disclaimer -->
-            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 text-[11px] text-slate-500 text-center leading-relaxed">
-                <strong>إخلاء مسؤولية طبي:</strong> المحتوى والأدوات الحاسبة المتوفرة في هذه المنصة هي لأغراض تعليمية وأكاديمية وثقيفية فقط، ولا تُعد بديلًا عن الاستشارة الطبية المباشرة أو التشخيص الطبي المتخصص.
-            </div>
+        </div>
+    </section>
 
-            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 pt-4 border-t border-slate-900 gap-2">
-                <span>© 2026 علوم طبية | MedScience. جميع الحقوق محفوظة.</span>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-slate-400"><i class="fa-brands fa-github text-base"></i></a>
-                    <a href="#" class="hover:text-slate-400"><i class="fa-brands fa-x-twitter text-base"></i></a>
-                    <a href="#" class="hover:text-slate-400"><i class="fa-brands fa-linkedin text-base"></i></a>
-                </div>
+    <!-- Medical Dictionary Section -->
+    <section id="dictionary" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 border-r-4 border-purple-600 pr-4">
+            <h3 class="text-2xl font-black text-slate-900 dark:text-white">القاموس الطبي وسوابق المصطلحات</h3>
+            <p class="text-sm text-slate-500">مرجع السوابق واللواحق الطبية (Prefixes & Suffixes)</p>
+        </div>
+        <div class="max-w-xl mx-auto mb-8">
+            <input type="text" id="dictSearch" onkeyup="filterDictionary()" placeholder="ابحث عن سابقة أو لاحق (مثال: Cardio, Itis, Nephro)..." 
+                class="w-full px-5 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 outline-none focus:ring-2 focus:ring-purple-500 shadow-sm">
+        </div>
+        <div id="dictGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="dict-item p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-blue-600">سابقة (Prefix)</span>
+                <h4 class="text-lg font-bold">Cardio-</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">يتعلق بالقلب وعضلاته (Heart)</p>
             </div>
+            <div class="dict-item p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-red-600">لاحقة (Suffix)</span>
+                <h4 class="text-lg font-bold">-itis</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">يشير إلى وجود التهاب (Inflammation)</p>
+            </div>
+            <div class="dict-item p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-amber-600">سابقة (Prefix)</span>
+                <h4 class="text-lg font-bold">Nephro-</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">يتعلق بالكلى ووظائفها (Kidney)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <p class="font-bold text-white">موسوعة العلوم الطبية الشاملة (MedScience Portal) © 2026</p>
+            <p class="text-xs text-slate-500 max-w-2xl mx-auto">
+                إخلاء مسؤولية: كافة المعلومات والكتب والحاسبات الواردة في هذا الملف مخصصة للأغراض الأكاديمية والبحثية والتعليمية فقط، ولا تغني مطلقاً عن الاستشارة التشخيصية الطبية المباشرة من الأطباء المختصين.
+            </p>
         </div>
     </footer>
 
-    <!-- ARTICLE READER MODAL -->
-    <div id="articleModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
-            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span id="modalCategory" class="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300"></span>
-                <button onclick="closeArticleModal()" class="text-slate-400 hover:text-rose-500 transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <div class="p-6 md:p-8 overflow-y-auto custom-scrollbar space-y-4">
-                <h2 id="modalTitle" class="text-2xl font-black text-slate-900 dark:text-white"></h2>
-                <div id="modalContent" class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed space-y-4"></div>
-            </div>
-            <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex justify-end">
-                <button onclick="closeArticleModal()" class="px-6 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold">إغلاق</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEARCH MODAL -->
-    <div id="searchModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-start justify-center pt-20 p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
-            <div class="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
-                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
-                <input type="text" id="liveSearchInput" onkeyup="handleLiveSearch()" placeholder="ابحث في الأبحاث، الحاسبات، والمصطلحات..." class="w-full bg-transparent border-none outline-none text-slate-900 dark:text-white text-sm">
-                <button onclick="toggleSearchModal(false)" class="text-xs font-bold text-slate-400 hover:text-slate-600">إلغاء</button>
-            </div>
-            <div id="searchResults" class="p-4 max-h-80 overflow-y-auto text-xs space-y-2">
-                <div class="text-slate-400 text-center py-4">ابدأ الكتابة للبحث المباشر...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- Comprehensive JavaScript Application Logic -->
     <script>
-        // DARK MODE TOGGLE
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        // DEPARTMENTS DATA & DETAILS PREVIEW
-        const deptData = {
-            physio: {
-                title: "علم وظائف الأعضاء (Physiology)",
-                desc: "يهتم بفهم كيفية عمل مختلف أعضاء وأجهزة الجسم للحفاظ على الاستقرار الكيميائي والفيزيائي الداخلي (Homeostasis).",
-                topics: ["فسيولوجيا القلب والأوعية (CV System)", "الفسيولوجيا العصبي (Neurophysiology)", "التنفس وتبادل الغازات", "التوازن الهرموني والغدد الصماء", "وظائف الكلى وتوازن السوائل", "فسيولوجيا الجهاز الهضمي"]
-            },
-            anatomy: {
-                title: "علم التشريح والأنسجة (Anatomy & Histology)",
-                desc: "دراسة البنية العيانية الملموسة للجسم، والتفاصيل المجهرية الدقيقة للأنسجة والخلايا كالأنسجة الطلائية والضامة.",
-                topics: ["التشريح العضلي الهيكلي", "التشريح العصبي (Neuroanatomy)", "الأنسجة الطلائية والضامة", "تشريح الأحشاء الصدرية والبطنية", "البيولوجيا التطورية والجنينية", "التشريح الشعاعي (Radiological Anatomy)"]
-            },
-            biochem: {
-                title: "الكيمياء الحيوية (Biochemistry)",
-                desc: "تختص بالتركيب الكيميائي للمكونات الخلوية والتفاعلات الأيضية التي تنتج الطاقة وتبني المركبات الحيوية.",
-                topics: ["كيمياء البروتينات والإنزيمات", "أيض الكربوهيدرات ودورة كريبس", "أيض الدهون والدهون الفوسفاتية", "الحمض النووي والتعبير الجيني", "الإشارات الخلوية وتصنيع الهرمونات", "الكيمياء الحيوية السريرية"]
-            },
-            pharma: {
-                title: "علم الأدوية (Pharmacology)",
-                desc: "دراسة مصادر العقاقير الطبية، آليات عملها على المستقبلات، والمسارات الحركية لامتصاصها وتوزيعها والتخلص منها.",
-                topics: ["الحركية الدوائية (Pharmacokinetics)", "الديناميكية الدوائية (Pharmacodynamics)", "أدوية الجهاز العصبي الذاتي", "المضادات الحيوية ومضادات الميكروبات", "أدوية القلب والضغط", "السموم وتداخلات الأدوية"]
-            },
-            patho: {
-                title: "علم الأمراض (Pathology)",
-                desc: "الجسر الرابط بين العلوم الأساسية والسريرية، يبحث في التغيرات النسيجية والخلوية المسببة للأمراض.",
-                topics: ["الالتهاب والترميم النسيجي", "أمراض الأوعية والتجلط", "علم الأورام والسرطان (Oncology)", "الاضطرابات المناعية والأوتوإيميون", "أمراض الجهاز التنفسي والقلب", "أمراض الكبد والجهاز الهضمي"]
-            },
-            micro: {
-                title: "الأحياء الدقيقة والجراثيم (Microbiology)",
-                desc: "يتناول دراسة الكائنات المجهرية كالبكتيريا، الفيروسات، الفطريات، وآليات الجهاز المناعي في التصدي لها.",
-                topics: ["علم البكتيريا السريري (Bacteriology)", "علم الفيروسات (Virology)", "علم المناعة (Immunology)", "علم الطفيليات (Parasitology)", "المقاومة للمضادات الحيوية", "الفطريات والعدوى الفرصية"]
-            }
+        // Data Store
+        const MedicalDB = {
+            books: [
+                { title: "Guyton and Hall Textbook of Medical Physiology", author: "John E. Hall", category: "Physiology", edition: "14th Edition", desc: "المرجع العالمي الأول في وظائف الأعضاء وتحليل آليات التوازن الداخلي.", icon: "fa-book-journal-whills", color: "text-sky-600" },
+                { title: "Robbins & Cotran Pathologic Basis of Disease", author: "Vinay Kumar", category: "Pathology", edition: "10th Edition", desc: "المرجع الأشمل في تفسير الأسس المرضية والنسيجية للاضطرابات العضوية.", icon: "fa-microscope", color: "text-amber-600" },
+                { title: "Lippincott Illustrated Reviews: Pharmacology", author: "Karen Whalen", category: "Pharmacology", edition: "8th Edition", desc: "مراجعة مصورة لآليات الأدوية، التفاعلات الدوائية، والجرعات السريرية.", icon: "fa-capsules", color: "text-emerald-600" },
+                { title: "Gray's Anatomy for Students", author: "Richard Drake", category: "Anatomy", edition: "4th Edition", desc: "أطلس التشريح البشري المعتمد للطلاب مع التطبيقات والرسومات السريرية.", icon: "fa-bone", color: "text-purple-600" }
+            ],
+            summaries: [
+                { disease: "داء السكري من النوع الثاني (Type 2 Diabetes)", system: "Endocrine System", etiology: "مقاومة الأنسولين المحيطية مع قصور تدريجي في إفراز خلايا بيتا بالبنكرياس.", symptoms: ["العطش الشديد (Polydipsia)", "التبول المتكرر (Polyuria)", "الإرهاق ونقص الوزن"], diagnosis: "Fasting Glucose ≥ 126 mg/dL أو HbA1c ≥ 6.5%", treatment: "تنظيم النمط الغذائي + Metformin + تعديل الأدوية حسب الحالة السريرية." },
+                { disease: "ارتفاع ضغط الدم الأساسي (Essential Hypertension)", system: "Cardiovascular", etiology: "زيادة المقاومة الوعائية المحيطية (SVR) بسبب عوامل وراثية وبيئية وتصلب الشرايين.", symptoms: ["غالباً بلا أعراض مبكرة", "صداع في مؤخرة الرأس عند الاستيقاظ", "إجهاد بصري"], diagnosis: "قياس ضغط الدم Systolic ≥ 130 أو Diastolic ≥ 80 mmHg متكرراً.", treatment: "موسعات الأوعية / ACE Inhibitors + مدرات البول + تغيير نمط الحياة." }
+            ]
         };
 
-        function showDeptDetails(key) {
-            const data = deptData[key];
-            if (!data) return;
-            document.getElementById('deptDetailTitle').innerText = data.title;
-            document.getElementById('deptDetailDesc').innerText = data.desc;
-            
-            const topicsList = document.getElementById('deptDetailTopics');
-            topicsList.innerHTML = '';
-            data.topics.forEach(top => {
-                topicsList.innerHTML += `<li class="flex items-center gap-2 p-2 bg-white dark:bg-slate-900 rounded-lg border border-slate-200/60 dark:border-slate-700/60"><i class="fa-solid fa-circle-check text-teal-500"></i> ${top}</li>`;
-            });
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderBooks(MedicalDB.books);
+            renderSummaries(MedicalDB.summaries);
+            initCardiacChart();
+            initLungChart();
+        });
 
-            document.getElementById('deptDetailBox').classList.remove('hidden');
-            document.getElementById('deptDetailBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        function hideDeptDetails() {
-            document.getElementById('deptDetailBox').classList.add('hidden');
-        }
-
-        // CALCULATOR SWITCH TABS
-        function switchCalcTab(tabKey) {
-            document.querySelectorAll('.calc-tab').forEach(btn => {
-                btn.classList.remove('bg-teal-600', 'text-white');
-                btn.classList.add('text-slate-600', 'dark:text-slate-300');
-            });
-            document.querySelectorAll('.calc-content').forEach(content => content.classList.add('hidden'));
-
-            const activeBtn = document.getElementById(`tab-${tabKey}`);
-            activeBtn.classList.add('bg-teal-600', 'text-white');
-            activeBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
-
-            document.getElementById(`calc-${tabKey}`).classList.remove('hidden');
-        }
-
-        // BMI CALCULATOR LOGIC
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('bmiWeight').value);
-            const heightCm = parseFloat(document.getElementById('bmiHeight').value);
-
-            if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
-                alert("يرجى إدخال قيم صالحة للوزن والطول.");
-                return;
-            }
-
-            const heightM = heightCm / 100;
-            const bmi = (weight / (heightM * heightM)).toFixed(1);
-
-            document.getElementById('bmiValue').innerText = bmi;
-            const statusEl = document.getElementById('bmiStatus');
-            const adviceEl = document.getElementById('bmiAdvice');
-
-            if (bmi < 18.5) {
-                statusEl.innerText = "نقص في الوزن (Underweight)";
-                statusEl.className = "text-sm font-bold text-amber-500 mb-3";
-                adviceEl.innerText = "يُنصح بمراجعة أخصائي تغذية لزيادة السعرات الحرارية بشكل صحي ومتوازن.";
-            } else if (bmi >= 18.5 && bmi <= 24.9) {
-                statusEl.innerText = "وزن طبيعي ومثالي (Normal)";
-                statusEl.className = "text-sm font-bold text-emerald-500 mb-3";
-                adviceEl.innerText = "ممتاز! حافظ على نظام غذائي متوازن والنشاط البدني المنتظم.";
-            } else if (bmi >= 25 && bmi <= 29.9) {
-                statusEl.innerText = "زيادة في الوزن (Overweight)";
-                statusEl.className = "text-sm font-bold text-amber-600 mb-3";
-                adviceEl.innerText = "يُنصح بزيادة التمارين الرياضية وتقليل السكريات والدهون المشبعة.";
-            } else {
-                statusEl.innerText = "سمنة (Obesity)";
-                statusEl.className = "text-sm font-bold text-rose-600 mb-3";
-                adviceEl.innerText = "يُوصى باتباع خطة خفض وزن تحت إشراف طبي للوقاية من أمراض القلب والسكري.";
-            }
-        }
-                // eGFR CALCULATOR LOGIC (CKD-EPI Simplified Simulation)
-        function calculateEGFR() {
-            const scr = parseFloat(document.getElementById('egfrScr').value);
-            const age = parseFloat(document.getElementById('egfrAge').value);
-            const gender = document.getElementById('egfrGender').value;
-
-            if (!scr || !age || scr <= 0 || age <= 0) {
-                alert("يرجى إدخال قيم الكرياتينين والعمر بشكل صحيح.");
-                return;
-            }
-
-            let k = gender === 'female' ? 0.7 : 0.9;
-            let alpha = gender === 'female' ? -0.241 : -0.302;
-            let genderFactor = gender === 'female' ? 1.012 : 1.0;
-
-            let egfr = 142 * Math.pow(Math.min(scr / k, 1), alpha) * Math.pow(Math.max(scr / k, 1), -1.200) * Math.pow(0.9938, age) * genderFactor;
-            egfr = Math.round(egfr);
-
-            document.getElementById('egfrValue').innerText = egfr;
-            const statusEl = document.getElementById('egfrStatus');
-            const adviceEl = document.getElementById('egfrAdvice');
-
-            if (egfr >= 90) {
-                statusEl.innerText = "وظائف كلى طبيعية (G1 - Normal)";
-                statusEl.className = "text-sm font-bold text-emerald-500 mb-3";
-                adviceEl.innerText = "الترشيح الكبيبي ممتاز. حافظ على شرب كميات كافية من الماء يومياً.";
-            } else if (egfr >= 60) {
-                statusEl.innerText = "انخفاض طفيف (G2 - Mildly Decreased)";
-                statusEl.className = "text-sm font-bold text-amber-500 mb-3";
-                adviceEl.innerText = "الوظائف جيدة عموماً، يُنصح بمتابعة الضغط والسكري وفحص الكرياتينين دورياً.";
-            } else {
-                statusEl.innerText = "انخفاض متوسط إلى شديد (G3/G4 - Decreased)";
-                statusEl.className = "text-sm font-bold text-rose-600 mb-3";
-                adviceEl.innerText = "يتطلب هذا المعدل استشارة طبيب أمراض كلى لمراجعة الأدوية والوقاية من التدهور.";
-            }
-        }
-
-        // DOSAGE CALCULATOR LOGIC
-        function calculateDosage() {
-            const weight = parseFloat(document.getElementById('doseWeight').value);
-            const target = parseFloat(document.getElementById('doseTarget').value);
-            const concMg = parseFloat(document.getElementById('doseConcMg').value);
-            const concMl = parseFloat(document.getElementById('doseConcMl').value);
-
-            if (!weight || !target || !concMg || !concMl || weight <= 0) {
-                alert("يرجى إدخال جميع مدخلات الجرعة بدقة.");
-                return;
-            }
-
-            const totalMg = weight * target;
-            const totalMl = (totalMg * concMl) / concMg;
-
-            document.getElementById('doseMgResult').innerText = `${totalMg.toFixed(1)} mg`;
-            document.getElementById('doseMlResult').innerText = `${totalMl.toFixed(1)} mL`;
-        }
-
-        // ARTICLES FILTER & MODAL
-        function filterArticles(cat) {
-            document.querySelectorAll('.art-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-teal-600', 'text-white');
-                btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-            });
-            event.target.classList.add('bg-teal-600', 'text-white');
-
-            const articles = document.querySelectorAll('.article-card');
-            articles.forEach(art => {
-                if (cat === 'all' || art.classList.contains(`cat-${cat}`)) {
-                    art.classList.remove('hidden');
-                } else {
-                    art.classList.add('hidden');
-                }
+        // Theme Toggle
+        function initTheme() {
+            const toggleBtn = document.getElementById('themeToggle');
+            toggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
             });
         }
 
-        const articlesData = {
-            1: {
-                title: "آليات التوازن الداخلي (Homeostasis) وتنظيم الضغط الشرياني",
-                category: "علم وظائف الأعضاء",
-                content: `<p>يمثل التوازن الداخلي (Homeostasis) إحدى الركائز الأساسية في علم وظائف الأعضاء، حيث يعمل الجسم من خلال آليات التغذية الراجعة السلبية (Negative Feedback) على الحفاظ على بيئة داخلية مستقرة.</p>
-                <h4 class="font-bold text-base text-slate-900 dark:text-white mt-4 mb-2">نظام الرينين-أنجيوتنسين-ألدوستيرون (RAAS):</h4>
-                <p>عند انخفاض تدفق الدم إلى الكليتين أو هبوط ضغط الدم، تفرز الخلايا المجاورة للكببية (Juxtaglomerular cells) إنزيم الرينين، والذي يحول الأنجيوتنسينوجين إلى أنجيوتنسين 1. ثم يتدخل إنزيم ACE في الرئتين ليحوله إلى أنجيوتنسين 2 الأقوى فاعلية، مما يسبب انقباض الأوعية الدموية وتحفيز إفراز الألدوستيرون لإعادة إمتصاص الصوديوم والماء.</p>`
-            },
-            2: {
-                title: "مستقبلات البيتا ومثبطاتها: الديناميكية الدوائية",
-                category: "علم الأدوية",
-                content: `<p>تتوزع مستقبلات أدرينرجيك من طراز بيتا في مختلف أنسجة الجسم؛ حيث تتركز مستقبلات Beta-1 في القلب، بينما تتواجد مستقبلات Beta-2 بشكل رئيسي في العضلات الملساء للقصبات الهوائية والأوعية الدموية.</p>
-                <h4 class="font-bold text-base text-slate-900 dark:text-white mt-4 mb-2">التطبيق السريري لحاصرات بيتا (Beta-Blockers):</h4>
-                <p>تعمل الأدوية الانتقائية مثل (Atenolol & Metoprolol) على اغلاق مستقبلات Beta-1 فقط، مما يقلل معدل ضربات القلب وقوة انقباضها دون التسبب في تضيق القصبات الهوائية، بعكس الأدوية غير الانتقائية مثل (Propranolol).</p>`
-            },
-            3: {
-                title: "دورة كريبس (Krebs Cycle) وإنتاج الطاقة الخلوية (ATP)",
-                category: "الكيمياء الحيوية",
-                content: `<p>تحدث دورة حمض الستريك (دورة كريبس) داخل مصفوفة الميتوكندريا، وتعد المسار الأيضي المركزي لأكسدة الأستيل كوانزيم A (Acetyl-CoA) الناتج من الجلوكوز والدهون والبروتينات.</p>
-                <h4 class="font-bold text-base text-slate-900 dark:text-white mt-4 mb-2">حصيلة الطاقة:</h4>
-                <p>تنتج كل دورة جزيء ATP واحد بشكل مباشر، بالإضافة إلى 3 جزيئات NADH وجزيء FADH2 والتي تدخل لاحقاً في سلسلة نقل الإلكترونات لتوليد الكمية الأكبر من جزيئات الطاقة الخلوية.</p>`
-            }
-        };
-
-        function openArticleModal(id) {
-            const data = articlesData[id];
-            if (!data) return;
-            document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalCategory').innerText = data.category;
-            document.getElementById('modalContent').innerHTML = data.content;
-            document.getElementById('articleModal').classList.remove('hidden');
-        }
-
-        function closeArticleModal() {
-            document.getElementById('articleModal').classList.add('hidden');
-        }
-
-        // QUIZ SYSTEM LOGIC
-        const quizQuestions = [
-            {
-                q: "أي من الهرمونات التالية يُفرز من الغدة النخامية الخلفية (Posterior Pituitary)؟",
-                options: ["الهرمون المانع لإدرار البول (ADH / Vasopressin)", "الهرمون الملوتن (LH)", "هرمون النمو (GH)", "هرمون الثايرويد (TSH)"],
-                correct: 0,
-                exp: "تفرز النخامية الخلفية هرموني الـ ADH والأوكسيتوسين (الذين يتم تصنيعهما في النواة فوق البصرية والجاورة للبطين في الهيبوثالاموس)."
-            },
-            {
-                q: "ما هي الوحدة الوظيفية الأساسية للتصفية والترشيح في الكلية؟",
-                options: ["النيفرون (Nephron)", "الكببة (Glomerulus)", "الأنبوب الجامع (Collecting Duct)", "الفص الكلوي"],
-                correct: 0,
-                exp: "النيفرون (Nephron) هو الوحدة التركيبية والوظيفية المصغرة للكلية وتضم الكببة والأنابيب الكلوية."
-            },
-            {
-                q: "أي إنزيم مسؤول عن تحويل الأنجيوتنسين 1 إلى أنجيوتنسين 2؟",
-                options: ["إنزيم ACE", "الرينين (Renin)", "البيسين (Pepsin)", "الكرياتين كينيز (CK)"],
-                correct: 0,
-                exp: "إنزيم ACE (Angiotensin-Converting Enzyme) المتواجد بكثرة في بطانة أوعية الرئتين هو المسار المسؤول عن هذا التحويل."
-            }
-        ];
-
-        let currentQuizIndex = 0;
-        let quizScore = 0;
-
-        function loadQuestion() {
-            const qData = quizQuestions[currentQuizIndex];
-            document.getElementById('quizProgress').innerText = `السؤال ${currentQuizIndex + 1} من ${quizQuestions.length}`;
-            document.getElementById('quizQuestion').innerText = qData.q;
-            
-            const optionsBox = document.getElementById('quizOptions');
-            optionsBox.innerHTML = '';
-
-            qData.options.forEach((opt, idx) => {
-                optionsBox.innerHTML += `
-                    <button onclick="checkAnswer(${idx})" class="quiz-opt-btn w-full p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-right text-xs font-bold text-slate-700 dark:text-slate-200 transition flex items-center justify-between">
-                        <span>${opt}</span>
-                        <i class="fa-regular fa-circle text-slate-300"></i>
-                    </button>
-                `;
-            });
-        document.getElementById('quizExplanation').classList.add('hidden');
-            document.getElementById('nextQuestionBtn').classList.add('hidden');
-        }
-
-        function checkAnswer(selectedIdx) {
-            const qData = quizQuestions[currentQuizIndex];
-            const buttons = document.querySelectorAll('.quiz-opt-btn');
-
-            buttons.forEach(btn => btn.disabled = true);
-
-            if (selectedIdx === qData.correct) {
-                buttons[selectedIdx].classList.add('bg-emerald-50', 'dark:bg-emerald-950', 'border-emerald-500', 'text-emerald-700');
-                quizScore += 10;
-                document.getElementById('quizScore').innerText = `النتيجة: ${quizScore}`;
-            } else {
-                buttons[selectedIdx].classList.add('bg-rose-50', 'dark:bg-rose-950', 'border-rose-500', 'text-rose-700');
-                buttons[qData.correct].classList.add('bg-emerald-50', 'dark:bg-emerald-950', 'border-emerald-500', 'text-emerald-700');
-            }
-
-            const expBox = document.getElementById('quizExplanation');
-            expBox.innerHTML = `<strong>الشرح العلمي:</strong> ${qData.exp}`;
-            expBox.classList.remove('hidden');
-
-            document.getElementById('nextQuestionBtn').classList.remove('hidden');
-        }
-
-        function nextQuestion() {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizQuestions.length) {
-                loadQuestion();
-            } else {
-                document.getElementById('quizContainer').classList.add('hidden');
-                document.getElementById('quizResultScreen').classList.remove('hidden');
-                document.getElementById('finalScoreText').innerText = `حصلت على ${quizScore} نقطة من أصل ${quizQuestions.length * 10}`;
-            }
-        }
-
-        function resetQuiz() {
-            currentQuizIndex = 0;
-            quizScore = 0;
-            document.getElementById('quizScore').innerText = `النتيجة: 0`;
-            document.getElementById('quizResultScreen').classList.add('hidden');
-            document.getElementById('quizContainer').classList.remove('hidden');
-            loadQuestion();
-        }
-
-        // MEDICAL DICTIONARY DATA & SEARCH
-        const dictionaryData = [
-            { term: "Cardia / Cardi-", meaning: "القلب", type: "Root", desc: "مصطلح يشير للقلب مثل Cardiology (علم أمراض القلب)." },
-            { term: "Nephro- / Ren-", meaning: "الكلية", type: "Root", desc: "يشير للكلى مثل Nephritis (التهاب الكلية)." },
-            { term: "Hepat- / Hepato-", meaning: "الكبد", type: "Root", desc: "يشير للكبد مثل Hepatomegaly (تضخم الكبد)." },
-            { term: "-itis", meaning: "التهاب", type: "Suffix", desc: "لاحقة تعني وجود التهاب نسيجي مثل Gastritis." },
-            { term: "Hyper-", meaning: "ارتفاع / زيادة", type: "Prefix", desc: "سابقة تعني زيادة كـ Hypertension (ارتفاع الضغط)." },
-            { term: "Hypo-", meaning: "انخفاض / نقص", type: "Prefix", desc: "سابقة تعني انخفاض كـ Hypoglycemia (نقص السكر)." },
-            { term: "Glyco-", meaning: "سكر / جلوكوز", type: "Root", desc: "مرتبط بالسكريات مثل Glycolysis (تحلل الجلوكوز)." },
-            { term: "-algia", meaning: "ألم", type: "Suffix", desc: "لاحقة تعني الشعور بالألم مثل Neuralgia (ألم عصبي)." },
-            { term: "Osteo-", meaning: "العظام", type: "Root", desc: "مرتبط بالهيكل العظمي مثل Osteoporosis (هشاشة العظام)." }
-        ];
-
-        function renderDictionary(terms) {
-            const grid = document.getElementById('dictGrid');
-            grid.innerHTML = '';
-            terms.forEach(item => {
-                grid.innerHTML += `
-                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-teal-500 transition">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="font-extrabold text-base text-teal-600 dark:text-teal-400" dir="ltr">${item.term}</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 font-bold">${item.type}</span>
+        // Render Books
+        function renderBooks(books) {
+            const container = document.getElementById('booksGrid');
+            container.innerHTML = books.map(book => `
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid ${book.icon} text-2xl ${book.color}"></i>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">${book.category}</span>
                         </div>
-                        <div class="text-sm font-bold text-slate-900 dark:text-white mb-1">المعنى: ${item.meaning}</div>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">${item.desc}</p>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">${book.title}</h4>
+                        <p class="text-xs text-slate-400 mb-3">${book.author} • ${book.edition}</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${book.desc}</p>
                     </div>
-                `;
-            });
+                    <button onclick="alert('جاري تجهيز رابط التحميل أو المعاينة لهذا المرجع الأكاديمي.')" class="mt-4 w-full py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl transition">
+                        <i class="fa-solid fa-download ml-1"></i> تحميل / قراءة المرجع
+                    </button>
+                </div>
+            `).join('');
         }
 
-        function searchDictionary() {
-            const query = document.getElementById('dictSearchInput').value.toLowerCase();
-            const filtered = dictionaryData.filter(item => 
-                item.term.toLowerCase().includes(query) || 
-                item.meaning.includes(query) ||
-                item.desc.includes(query)
-            );
-            renderDictionary(filtered);
-        }
-
-        // LIVE SEARCH MODAL
-        function toggleSearchModal(show) {
-            const modal = document.getElementById('searchModal');
-            if (show) modal.classList.remove('hidden');
-            else modal.classList.add('hidden');
-        }
-
-        function handleLiveSearch() {
-            const q = document.getElementById('liveSearchInput').value.toLowerCase();
-            const resultsBox = document.getElementById('searchResults');
-
-            if (!q.trim()) {
-                resultsBox.innerHTML = `<div class="text-slate-400 text-center py-4">ابدأ الكتابة للبحث المباشر...</div>`;
-                return;
-            }
-
-            let matches = [];
-            // Search in dictionary
-            dictionaryData.forEach(d => {
-                if (d.term.toLowerCase().includes(q) || d.meaning.includes(q)) {
-                    matches.push({ title: `${d.term} - ${d.meaning}`, type: "مصطلح بالقاموس", link: "#dictionary" });
-                }
-            });
-
-            if (matches.length === 0) {
-                resultsBox.innerHTML = `<div class="text-slate-400 text-center py-4">لا توجد نتائج مطابقة لـ "${q}"</div>`;
-            } else {
-                resultsBox.innerHTML = '';
-                matches.forEach(m => {
-                    resultsBox.innerHTML += `
-                        <a href="${m.link}" onclick="toggleSearchModal(false)" class="block p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center justify-between">
-                            <span class="font-bold text-slate-800 dark:text-slate-200">${m.title}</span>
-                            <span class="text-[10px] text-teal-600 dark:text-teal-400 font-semibold">${m.type}</span>
-                        </a>
-                    `;
-                });
-            }
-        }
-
-        // INITIALIZATION ON WINDOW LOAD
-        window.onload = function() {
-            loadQuestion();
-            renderDictionary(dictionaryData);
-        };
-    </script>
-        </body>
-</html>
+        // Render Summaries
+        function renderSummaries(summaries) {
+            const container = document.getElementById('summariesContainer');
+            container.innerHTML = summaries.map(s => `
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-3 shadow-sm">
+                    <span class="text-xs font-bold text-amber-600 bg-amber-50 dark:bg-amber-900/30 px-3 py-1 rounded-full">${s.system}</span>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white">${s.disease}</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300"><strong>السبب (Etiology):</strong> ${s.etiology}</p>
+                    <div class="text-sm text-slate-600 dark:text-slate-300">
+                        <strong>الأعراض السريرية:</strong>
+                        <ul class="list-disc list-inside text-xs mt-1 space-y-1">
+                            ${s.symptoms.map(sym => `<li>${sym}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300"><strong>معايير التشخيص:</strong> ${s.diagnosis}</p>
+                    <p class="text-sm text-slate-600 dark:text-slate-300"><strong>الخط العلاجي
